@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Qalyn calculator</title>
+  </head>
+  <body>
+    <div class="container mt-4 shadow p-3 mb-5 bg-white rounded">
+        <div class="row">
+            <div class="col col-sm-12">
+                <h1 class="text-center">Dowry Calculator</h1>
+                <form>
+                    <!-- Education Level -->
+                    <label for="education_level">Education level:</label><br>
+                    <select id="education">
+                        <option value="blank"></option>
+                        <option value="bachelor">Bachelor's degree</option>
+                        <option value="college">College degree</option>
+                        <option value="high_school">High school degree</option>
+                        <option value="middle_school">Middle school degree</option>
+                    </select>
+                    <hr>
+
+                    <!-- Family Net Worth -->
+                    <label for="family_networth">Family Net Worth:</label><br>
+                    <select id="networth">
+                        <option value="blank"></option>
+                        <option value="upper_class">More than 100,000$</option>
+                        <option value="middle_class">Between 50,000$ and 100,000$</option>
+                        <option value="lower_class">Less than 50,000$</option>
+                    </select>
+                    <hr>
+
+                    <!-- Caste -->
+                    <label for="caste">Caste:</label><br>
+                    <input type="radio" id="brahmin" name="caste" value="brahmin">
+                    <label for="brahmin">Brahmin (+100$)</label><br>
+                    <input type="radio" id="kshatriya" name="caste" value="kshatriya">
+                    <label for="kshatriya">Kshatriya (+50$)</label><br>
+                    <input type="radio" id="vaishya" name="caste" value="vaishya">
+                    <label for="vaishya">Vaishya (+20$)</label><br>
+                    <input type="radio" id="shudra" name="caste" value="shudra">
+                    <label for="shudra">Shudra (+10$)</label><br>
+                    <input type="radio" id="untouchable" name="caste" value="untouchable">
+                    <label for="untouchable">Varna - Untouchable (-50$)</label>
+                    <hr>
+
+                    <!-- Skills -->
+                    <label for="skills">Skills:</label><br>
+                    <input type="checkbox" id="music_skill" value="music_skill">
+                    <label for="music_skill">Playing on a musical instrument (+10$)</label><br>
+                    <input type="checkbox" id="cooking_skill" value="cooking_skill">
+                    <label for="cooking_skill">Good cook (+20$)</label><br>
+                    <input type="checkbox" id="easygoing_skill" value="easygoing_skill">
+                    <label for="easygoing_skill">Easygoing character (+15$)</label><br>
+                    <input type="checkbox" id="singing_skill" value="singing_skill">
+                    <label for="singing_skill">Sings well (+10$)</label>
+                    <hr>
+
+                    <!-- Age -->
+                    <label for="age">Age:</label><br>
+                    <input type="radio" id="18-23" name="age" value="18-23">
+                    <label for="18-23">18-23 (coefficient 1.5)</label><br>
+                    <input type="radio" id="24-27" name="age" value="24-27">
+                    <label for="24-27">24-27 (coefficient 1.2)</label><br>
+                    <input type="radio" id="28+" name="age" value="28+">
+                    <label for="28+">28+ (coefficient 0.95)</label>
+                    <hr>
+
+                    <!-- Reputation -->
+                    <label for="reputation">Reputation:</label><br>
+                    <input type="checkbox" id="parent_gossip" value="parent_gossip">
+                    <label for="parent_gossip">Gossips about his/her parent's attitude (coefficient 0.85)</label><br>
+                    <input type="checkbox" id="character_gossip" value="character_gossip">
+                    <label for="character_gossip">Gossips about his/her character (coefficient 0.9)</label><br>
+                    <input type="checkbox" id="general_gossip" value="general_gossip">
+                    <label for="general_gossip">General gossips around his/her person (-20$)</label>
+                    <hr>
+                </form>
+                <button id="submit" type="button" class="btn btn-primary">Calculate price</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+  </body>
+</html>
