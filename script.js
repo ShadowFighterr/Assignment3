@@ -1,61 +1,43 @@
-document.getElementById("submit").addEventListener("click", calculatePrice);
+document.getElementById("submit").addEventListener("click", () => {
+    const calculate = () => {
+        let name = document.getElementById("name").value;
+        let price = Number(document.getElementById("startingBid").value);
 
-function calculatePrice() {
-    let basePrice = 100;
-    let price = basePrice;
+        if (!name || !price) return alert("Please enter a valid name and starting bid.");
 
-    // Education level
-    const education = document.getElementById("education").value;
-    if (education === "bachelor") price *= 1.5;
-    else if (education === "college") price *= 1.2;
-    else if (education === "high_school") price *= 1.05;
-    else if (education === "middle_school") price *= 0.9;
+        price *= Number(document.getElementById("education").value);
+        price *= Number(document.getElementById("networth").value);
+        price += Number(document.getElementById("caste").value);
 
-    // Family net worth
-    const networth = document.getElementById("networth").value;
-    if (networth === "upper_class") price *= 2;
-    else if (networth === "middle_class") price *= 1.5;
-    else if (networth === "lower_class") price *= 1.2;
+        const skills = Array.from(document.getElementsByClassName("skills"))
+            .filter(skill => skill.checked)
+            .reduce((total, skill) => total + Number(skill.value), 0);
+        price += skills;
 
-    // Caste
-    const caste = document.querySelector('input[name="caste"]:checked');
-    if (caste) {
-        const casteValue = caste.value;
-        if (casteValue === "brahmin") price += 100;
-        else if (casteValue === "kshatriya") price += 50;
-        else if (casteValue === "vaishya") price += 20;
-        else if (casteValue === "shudra") price += 10;
-        else if (casteValue === "untouchable") price -= 50;
-    }
+        document.querySelectorAll("input[name='age']").forEach(age => {
+            if (age.checked) price *= Number(age.value);
+        });
 
-    // Skills
-    if (document.getElementById("music_skill").checked) price += 10;
-    if (document.getElementById("cooking_skill").checked) price += 20;
-    if (document.getElementById("easygoing_skill").checked) price += 15;
-    if (document.getElementById("singing_skill").checked) price += 10;
+        const reputations = document.querySelectorAll(".reputation");
+        for (let i = 0; i < reputations.length; i++) {
+            if (reputations[i].checked) {
+                if (Number(reputations[i].value) < 1) {
+                    price *= Number(reputations[i].value);
+                } else {
+                    price += Number(reputations[i].value);
+                }
+            }
+        }
 
-    // Age
-    const age = document.querySelector('input[name="age"]:checked').value;
-    if (age === "18-23") price *= 1.5;
-    else if (age === "24-27") price *= 1.2;
-    else if (age === "28+") price *= 0.95;
+        const loveLetter = document.getElementById("loveLetter").value;
+        const person = {
+            namee: name,
+            pricee: price,
+            loveLetterr: loveLetter
+        };
 
-    // Reputation
-    if (document.getElementById("parent_gossip").checked) price *= 0.85;
-    if (document.getElementById("character_gossip").checked) price *= 0.9;
-    if (document.getElementById("general_gossip").checked) price -= 20;
+        document.getElementById("result").innerHTML = `Your price for ${person.namee} is $${person.pricee.toFixed(2)}.<br>Love Letter: ${person.loveLetterr}`;
+    };
 
-    // Display the result
-    const resultContainer = document.getElementById("result");
-    if (!resultContainer) {
-        const resultElement = document.createElement("h2");
-        resultElement.id = "result";
-        resultElement.innerText = "The calculated price is: $" + price.toFixed(2);
-        document.querySelector(".container").appendChild(resultElement);
-    } else {
-        resultContainer.innerText = "The calculated price is: $" + price.toFixed(2);
-    }
-
-    // Apply CSS to the result for visual effect
-    resultContainer.style.color = "green";
-}
+    calculate();
+});
